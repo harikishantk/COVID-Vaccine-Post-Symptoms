@@ -1,41 +1,63 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import BarChartHome from "./components/BarChartHome";
 import { Header } from "./components/Header";
 import ModernaPieChart from "./components/ModernaPieChart";
 import PfizerPieChart from "./components/PfizerPieChart";
-import { CssBaseline, createMuiTheme, Grid, Paper, Typography } from "@material-ui/core";
+import {
+  CssBaseline,
+  createMuiTheme,
+  Grid,
+  Paper,
+  Typography,
+} from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
-import red from '@material-ui/core/colors/red';
+import Footer from "./components/Footer";
+import Divider from "@material-ui/core/Divider";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 
 const theme = createMuiTheme({
   palette: {
     type: "dark",
     background: {
-      paper: '#192734',
-      default: '#15202B'
-    }
+      paper: "#192734",
+      default: "#15202B",
+    },
   },
 });
 
-
 const App = () => {
-
-  const [pfizerData, setPfizerData] = useState([])
-  const [modernaData, setModernaData] = useState([])
-
+  const [pfizerData, setPfizerData] = useState([]);
+  const [modernaData, setModernaData] = useState([]);
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      <Grid container spacing={2} justify='center' style={{margin: 'auto'}}>
+      <Grid container spacing={2} justify="center" style={{ margin: "auto" }}>
         <Grid item xs={12}>
           <Header />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Paper style={{opacity: '0.8', padding: '12px'}} >
-            <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque purus metus, cursus vitae posuere interdum, tincidunt eget risus. Fusce fringilla est non lorem sodales, quis hendrerit diam dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque suscipit massa tortor, et gravida erat sollicitudin eget. Vivamus justo lectus, posuere non pharetra et, scelerisque quis tellus. Cras a tellus risus. Phasellus non lacus non purus condimentum vulputate ac eget enim. Phasellus blandit sapien vel feugiat placerat. Suspendisse commodo eros id vehicula venenatis. Aenean nec dui in orci egestas blandit. Vestibulum lorem purus, pharetra quis vestibulum in, accumsan sed ligula. Maecenas dictum ex vitae fermentum accumsan.
+          <Paper style={{ opacity: "0.8", padding: "12px" }}>
+            <Typography
+              variant="h5"
+              color="inherit"
+              gutterBottom
+              align="center"
+              style={{ fontWeight: "bold" }}
+            >
+              Why this website
+            </Typography>
+            <Typography variant="subtitle1" gutterBottom>
+              COVID-19 vaccination will help protect you from getting COVID-19.
+              But according to CDC You may have some side effects, which are
+              normal signs that your body is building protection. These side
+              effects may affect your ability to do daily activities, but they
+              should go away in a few days. We built this site so the part of
+              the community who already have been vaccinated can inform others
+              who wish to get vaccinated about any adverse side effects or
+              complications.
             </Typography>
           </Paper>
         </Grid>
@@ -43,24 +65,65 @@ const App = () => {
           item
           xs={12}
           sm={6}
-          style={{ display: "flex", justifyContent: "center"}}
+          style={{ display: "flex", justifyContent: "center" }}
         >
-          <BarChartHome pfizerData={ pfizerData } modernaData={ modernaData }/>
+          <BarChartHome pfizerData={pfizerData} modernaData={modernaData} />
         </Grid>
-        <Grid item xs={12} sm={6} style={{display: 'flex', justifyContent: 'center'}}>
-          <PfizerPieChart data={ pfizerData }/>
-          <ModernaPieChart data={ modernaData } />
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <PfizerPieChart data={pfizerData} />
+          <ModernaPieChart data={modernaData} />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Paper style={{opacity: '0.8', padding: '12px'}} >
-            <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque purus metus, cursus vitae posuere interdum, tincidunt eget risus. Fusce fringilla est non lorem sodales, quis hendrerit diam dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque suscipit massa tortor, et gravida erat sollicitudin eget. Vivamus justo lectus, posuere non pharetra et, scelerisque quis tellus. Cras a tellus risus. Phasellus non lacus non purus condimentum vulputate ac eget enim. Phasellus blandit sapien vel feugiat placerat. Suspendisse commodo eros id vehicula venenatis. Aenean nec dui in orci egestas blandit. Vestibulum lorem purus, pharetra quis vestibulum in, accumsan sed ligula. Maecenas dictum ex vitae fermentum accumsan.
+          <Paper style={{ opacity: "0.8", padding: "12px" }}>
+            <Typography
+              variant="h5"
+              color="inherit"
+              gutterBottom
+              align="center"
+              style={{ fontWeight: "bold" }}
+            >
+              Common side effects
             </Typography>
+            <Grid container spacing={2} justifyContent='center'>
+              <Grid item xs={6}>
+                <Typography>
+                  <List>
+                    <Typography style={{ fontWeight: "bold" }}>
+                      On the arm where you got the shot:
+                    </Typography>
+                    <ListItem>Pain</ListItem>
+                    <ListItem>Swelling</ListItem>
+                  </List>
+                </Typography>
+              </Grid>
+              <Grid item xs={6}>
+                <Typography>
+                  <List>
+                    <Typography style={{ fontWeight: "bold" }}>
+                      Throughout the rest of your body:
+                    </Typography>
+                    <ListItem>Fever</ListItem>
+                    <ListItem>Chills</ListItem>
+                    <ListItem>Tiredness</ListItem>
+                    <ListItem>Headache</ListItem>
+                  </List>
+                </Typography>
+              </Grid>
+            </Grid>
           </Paper>
         </Grid>
       </Grid>
+      <Divider variant="middle"/>
+      <Grid style={{ marginTop: "20px" }}>
+        <Footer />
+      </Grid>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
