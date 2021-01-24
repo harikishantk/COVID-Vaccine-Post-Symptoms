@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import vaccineImage from "../images/vaccine.jpeg";
 import { Button } from "@material-ui/core";
-import ContributorFormMain from "./contributors/ContributorFormMain";
+
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
@@ -61,7 +61,6 @@ export const Header = () => {
             <Button
               variant="contained"
               style={{ backgroundColor: "#BAC938", fontWeight: "bold" }}
-              onClick={ () => <ContributorFormMain /> }
             >
               Contribute
             </Button>
