@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Patient(models.Model):
     GENDER = (
@@ -9,28 +10,10 @@ class Patient(models.Model):
     )
 
     VACCINE = (
-        ('1','Comirnaty'),
+        ('1','Pfizer'),
         ('2','Moderna COVID-19 Vaccine'),
-        ('3','CoronaVac'),
-        ('4','COVID-19 Vaccine AstraZeneca'),
-        ('5','Sputnik V'),
-        ('6','BBIBP-CorV'),
-        ('7','EpiVacCorona'),
-        ('8','Covaxin')
     )
 
-    SYMPTOMS = (
-        ('fatigue','Fatigue'),
-        ('headache','Headache'),
-        ('pain','Muscle Pain'),
-        ('fever','Fever'),
-        ('Pain Around the Injection Site' , (
-                                        ('swell','Swellness'),
-                                        ('red','Redness'),
-                                        ('sore','Soreness'),
-                                            )
-        ),
-    )
 
     name = models.CharField(max_length=30)
     age = models.IntegerField()
@@ -39,6 +22,10 @@ class Patient(models.Model):
     allergic = models.TextField(max_length=200, blank = True)
     race = models.CharField(max_length=25)
     vaccine = models.CharField(max_length=10,choices=VACCINE)
-    symptoms = models.CharField(max_length=10,choices=SYMPTOMS)
+    is_headache = models.BooleanField("Headache",default = False)
+    is_fatigue = models.BooleanField("Fatigue",default = False)
+    is_muscle_pain = models.BooleanField("Muscle Pain",default = False)
+    is_fever = models.BooleanField("Fever",default = False)
+    is_pain_around = models.BooleanField("Pain Around Injection Site",default = False)
     proof = models.FileField()
     comment = models.TextField(max_length = 200, blank = True)

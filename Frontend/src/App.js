@@ -4,6 +4,7 @@ import ModernaPieChart from "./components/ModernaPieChart";
 import PfizerPieChart from "./components/PfizerPieChart";
 import { CssBaseline, createMuiTheme, Grid, Paper, Typography } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
+import axios from 'axios';
 
 const theme = createMuiTheme({
   palette: {
