@@ -6,3 +6,4 @@ class ContributorForm(forms.ModelForm):
 	class Meta:
             model = Patient
             fields = '__all__'
+

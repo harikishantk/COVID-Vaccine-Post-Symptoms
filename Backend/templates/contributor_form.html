@@ -1,5 +1,140 @@
-<form method="post" action="" enctype="multipart/form-data"> 
-	{% csrf_token %} 
-	{{ form.as_p }} 
-	<input type="submit" value="Save"> 
-</form> 
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
+    <title>Form Submission</title>
+	<style>
+
+			input[type=text], select {
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+		}
+
+		input[type=submit] {
+		width: 100%;
+		background-color: #4CAF50;
+		color: white;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		}
+
+		input[type=submit]:hover {
+		background-color: #45a049;
+		}
+
+		div {
+		border-radius: 5px;
+		background-color: #f2f2f2;
+		padding: 20px;
+		}
+
+		footer {
+			display: flex;
+		}
+
+				.row {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 100%;
+		}
+
+		.column {
+		display: flex;
+		flex-direction: column;
+		flex-basis: 100%;
+		flex: 1;
+		}
+
+	</style>
+  </head>
+  <body>
+  
+    {% load widget_tweaks %}
+	<div>
+		<form method="post" novalidate enctype="multipart/form-data">
+		{% csrf_token %}
+
+		{% for hidden_field in form.hidden_fields %}
+			{{ hidden_field }}
+		{% endfor %}
+
+		{% if form.non_field_errors %}
+			<div class="alert alert-danger" role="alert">
+			{% for error in form.non_field_errors %}
+				{{ error }}
+			{% endfor %}
+			</div>
+		{% endif %}
+
+		{% for field in form.visible_fields %}
+			<div class="form-group">
+			{{ field.label_tag }}
+
+			{% if form.is_bound %}
+				{% if field.errors %}
+				{% render_field field class="form-control is-invalid" %}
+				{% for error in field.errors %}
+					<div class="invalid-feedback">
+					{{ error }}
+					</div>
+				{% endfor %}
+				{% else %}
+				{% render_field field class="form-control is-valid" %}
+				{% endif %}
+			{% else %}
+				{% render_field field class="form-control" %}
+			{% endif %}
+
+			{% if field.help_text %}
+				<small class="form-text text-muted">{{ field.help_text }}</small>
+			{% endif %}
+			</div>
+		{% endfor %}
+		{% if messages %}
+		<div class=" alert alert-{{messages.tags}}" role="alert">
+			{{ message }}
+		</div>
+		{% endif %}
+		<div class="footer">
+		<div class="row">
+			<div class="column">
+			<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+			<div class="column">
+			<h5>Once you submitted correctly, you get redirected to Homepage.</h5>
+			</div>
+		</div>
+		</form>
+
+	</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+	
+  </body>
+</html>
+
+
+
+
