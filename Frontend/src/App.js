@@ -51,7 +51,7 @@ const App = () => {
             </Typography>
             <Typography variant="subtitle1" gutterBottom>
               COVID-19 vaccination will help protect you from getting COVID-19.
-              But according to CDC You may have some side effects, which are
+              But according to the CDC, you may have some side effects, which are
               normal signs that your body is building protection. These side
               effects may affect your ability to do daily activities, but they
               should go away in a few days. We built this site so the part of
